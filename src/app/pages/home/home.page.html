@@ -1,9 +1,85 @@
 <ion-header>
   <ion-toolbar color="primary">
-<ion-title>home</ion-title>
-</ion-toolbar>
- </ion-header>
- 
- <ion-content>
- 
- </ion-content>
+    <ion-title>Chat App</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" id="popover">
+        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-popover #popover triggers="popover" triggerAction="click">
+      <ng-template>
+           <ion-content class="ion-padding ion-text-center" (click)="logout()">
+        <ion-label color="danger">
+        LOGOUT
+        </ion-label>
+       </ion-content>
+      </ng-template>
+     </ion-popover>
+  </ion-toolbar>
+  <ion-segment [value]="segment" mode="md" (ionChange)="onSegmentChanged($event)">
+    <ion-segment-button value="status">
+	 <ion-label>Status</ion-label>
+	</ion-segment-button>
+	<ion-segment-button value="chats">
+	 <ion-label>Chats</ion-label>
+	</ion-segment-button>
+	<ion-segment-button value="calls">
+	 <ion-label>Calls</ion-label>
+	</ion-segment-button>
+   </ion-segment>
+</ion-header>
+
+<ion-content color="light">
+  <ion-list *ngIf="segment == 'chats'"></ion-list>
+
+  <ion-list-header class="ion-padding-buttom" color='light'>
+    RECENT CHATS
+    </ion-list-header>
+
+    <ion-item detail>
+      <ion-avatar slot="start">
+        <img [src]="'https://i.pravatar.cc/385'" />
+        </ion-avatar>
+        <ion-label>
+         Nikhil
+          <p>
+          <ion-text>
+            message
+          </ion-text>
+          </p>
+        </ion-label>
+        <ion-text slot="end" color="medium">10:00A M</ion-text>
+    </ion-item>
+
+    <ion-item detail>
+      <ion-avatar slot="start">
+        <img [src]="'https://i.pravatar.cc/380'" />
+        </ion-avatar>
+        <ion-label>
+         Alex
+          <p>
+          <ion-text>
+            message
+          </ion-text>
+          </p>
+        </ion-label>
+        <ion-text slot="end" color="medium">10:00A M</ion-text>
+    </ion-item>
+
+    <ion-item detail>
+      <ion-avatar slot="start">
+        <img [src]="'https://i.pravatar.cc/390'" />
+        </ion-avatar>
+        <ion-label>
+         Mireum
+          <p>
+          <ion-text>
+            message
+          </ion-text>
+          </p>
+        </ion-label>
+        <ion-text slot="end" color="medium">10:00A M</ion-text>
+    </ion-item>
+
+</ion-content>
+
