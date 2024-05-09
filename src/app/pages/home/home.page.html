@@ -30,18 +30,20 @@
 </ion-header>
 
 <ion-content color="light">
-  <ion-list *ngIf="segment == 'chats'">
+  <ion-list *ngIf="segment == 'chats'  && (chatRooms) as rooms">
 
   <ion-list-header class="ion-padding-buttom" color='light'>
     RECENT CHATS
     </ion-list-header>
 
-    <ion-item detail>
+    <ion-item *ngFor="let item of rooms"
+    (click)="getChat(item)"
+    [detail]="true">
       <ion-avatar slot="start">
-        <img [src]="'https://i.pravatar.cc/385'" />
+        <img [src]="item?.photo" />
         </ion-avatar>
         <ion-label>
-         Nikhil
+         {{item?.name}}
           <p>
           <ion-text>
             message
@@ -51,7 +53,7 @@
         <ion-text slot="end" color="medium">10:00A M</ion-text>
     </ion-item>
 
-    <ion-item detail>
+     <!-- <ion-item detail>
       <ion-avatar slot="start">
         <img [src]="'https://i.pravatar.cc/380'" />
         </ion-avatar>
@@ -79,8 +81,8 @@
           </p>
         </ion-label>
         <ion-text slot="end" color="medium">10:00A M</ion-text>
-    </ion-item>
-    </ion-list>
+    </ion-item> -->
+    </ion-list> 
 
     <ion-fab slot="fixed" horizontal="end" vertical="bottom">
       <ion-fab-button (click)="newChat()">
@@ -90,6 +92,8 @@
     
  
      <ion-modal #new_chat [isOpen]="open_new_chat" (willDismiss)="onWillDismiss($event)">
+     
+
       <ng-template>
      <ion-header>
       <ion-toolbar color="primary">
@@ -99,11 +103,12 @@
        </ion-buttons>
       </ion-toolbar>
      </ion-header>
-    <ion-content color="light"  *ngif="users as user$">
+    <ion-content color="light"  *ngIf="users as user$">
       <ion-list class="ion-margin-top" [style.background]="'transparent'" lines="non">
    
       </ion-list>
       <app-user-list *ngFor="let item of user$" [item]="item" (onClick)="startChat($event)"> </app-user-list>
+
 
     </ion-content>
     </ng-template>

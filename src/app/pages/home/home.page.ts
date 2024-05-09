@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { ModalController, PopoverController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -8,22 +10,27 @@ import { Observable } from 'rxjs';
 })
 export class HomePage implements OnInit {
 
+  @ViewChild('new_chat') modal: ModalController;
+  @ViewChild('popover') popover: PopoverController;
 
   segment = 'chats';
   open_new_chat = false;
   users = [
-    { id: 1, name: 'Mireum', photo: 'https://i.pravatar.cc/385'},
-    { id: 2, name: 'Nikhil', photo: 'https://i.pravatar.cc/390'},
+    { id: 1, name: 'Mireum', photo: 'https://i.pravatar.cc/375'},
+    { id: 2, name: 'Nikhil', photo: 'https://i.pravatar.cc/370'},
+  ]
+  chatRooms = [
+    { id: 1, name: 'Mireum', photo: 'https://i.pravatar.cc/375'},
+    { id: 2, name: 'Nikhil', photo: 'https://i.pravatar.cc/370'},
   ]
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   logout() {
-    
-
+     this.popover.dismiss();
   }
 
   onSegmentChanged(event: any) {
@@ -39,10 +46,14 @@ export class HomePage implements OnInit {
   }
 
   cancel() {
-
+    this.modal.dismiss();
+    this.open_new_chat = false;
   }
 
   startChat(item) {
     
+  }
+  getChat(item) {
+    this.router.navigate(['/', 'home', 'chats', item?.id]);
   }
 }

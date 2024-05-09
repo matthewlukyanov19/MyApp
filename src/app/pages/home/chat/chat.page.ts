@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-chat',
@@ -7,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatPage implements OnInit {
 
+  name: string = 'Sender';
+  message: string;
+  isLoading = false;
+  currentUserId = 1;
+  @Input() chat: any;
+  chats = [
+    {id: 1, sender: 1, message: 'hi'},
+    {id: 2, sender: 2, message: 'bye'},
+  ];
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  sendMessage() {
+
   }
 
 }
