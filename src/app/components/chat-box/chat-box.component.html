@@ -1,5 +1,8 @@
-<ion-item lines="none" [class]="chat?.sender != current_user_id ? 'sender' : 'user'">
-  <ion-label> [slot]="chat?.sender == current_user_id ? 'end' : 'start'" class="ion-text-wrap">
+<ion-item 
+lines="none" 
+[class]="chat?.sender != current_user_id ? 'sender' : 'user'">
+  <ion-label
+    [slot]="chat?.sender == current_user_id ? 'end' : 'start'" class="ion-text-wrap">
    <ion-text>{{chat?.message}}</ion-text>
    <ion-note>
     <!-- <small>{{(chat?.createdAt)?.toDate() | date: 'HH:mm'}}</small> -->
