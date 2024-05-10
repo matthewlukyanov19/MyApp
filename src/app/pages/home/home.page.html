@@ -8,13 +8,14 @@
     </ion-buttons>
     <ion-popover #popover triggers="popover" triggerAction="click">
       <ng-template>
-           <ion-content class="ion-padding ion-text-center" (click)="logout()">
-        <ion-label color="danger">
-        LOGOUT
-        </ion-label>
-       </ion-content>
+        <ion-content class="ion-padding ion-text-center" (click)="logout()">
+          <ion-label color="danger">
+            LOGOUT
+          </ion-label>
+        </ion-content>
       </ng-template>
-     </ion-popover>
+    </ion-popover>
+    
   </ion-toolbar>
   <ion-segment [value]="segment" mode="md" (ionChange)="onSegmentChanged($event)">
     <ion-segment-button value="status">
@@ -53,35 +54,6 @@
         <ion-text slot="end" color="medium">10:00A M</ion-text>
     </ion-item>
 
-     <!-- <ion-item detail>
-      <ion-avatar slot="start">
-        <img [src]="'https://i.pravatar.cc/380'" />
-        </ion-avatar>
-        <ion-label>
-         Alex
-          <p>
-          <ion-text>
-            message
-          </ion-text>
-          </p>
-        </ion-label>
-        <ion-text slot="end" color="medium">10:00A M</ion-text>
-    </ion-item>
-
-    <ion-item detail>
-      <ion-avatar slot="start">
-        <img [src]="'https://i.pravatar.cc/390'" />
-        </ion-avatar>
-        <ion-label>
-         Mireum
-          <p>
-          <ion-text>
-            message
-          </ion-text>
-          </p>
-        </ion-label>
-        <ion-text slot="end" color="medium">10:00A M</ion-text>
-    </ion-item> -->
     </ion-list> 
 
     <ion-fab slot="fixed" horizontal="end" vertical="bottom">
@@ -103,8 +75,8 @@
        </ion-buttons>
       </ion-toolbar>
      </ion-header>
-    <ion-content color="light"  *ngIf="users as user$">
-      <ion-list class="ion-margin-top" [style.background]="'transparent'" lines="non">
+    <ion-content color="light"  *ngIf="(users | async) as user$">
+      <ion-list class="ion-margin-top" [style.background]="'transparent'" lines="none">
    
       </ion-list>
       <app-user-list *ngFor="let item of user$" [item]="item" (onClick)="startChat($event)"> </app-user-list>
