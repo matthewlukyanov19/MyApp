@@ -1,4 +1,5 @@
 <ion-content [fullscreen]="true">
+  <ion-spinner class="ion-text-center" name="crescent" *ngIf="isLoading"></ion-spinner>
   <div class="circleBase type2 circle1"></div>
   <div class="circleBase type1"></div>
   <div class="circleBase type2 circle2"></div>
@@ -87,7 +88,9 @@
           </div>
         </ion-col>
       </ion-row>
-      <ion-button color="primary" shape="round" (click)="onSubmit()">Sign Up</ion-button>
+      <!--<ion-button color="primary" shape="round" (click)="onSubmit()">Sign Up</ion-button> -->
+      <ion-button color="primary" shape="round" (click)="register(signupForm)">Sign Up</ion-button>
+
     </ion-list>
   </form>
 </ion-content>
